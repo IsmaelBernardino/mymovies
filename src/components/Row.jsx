@@ -65,7 +65,7 @@ const Row = ({ title, url, category }) => {
               </div>
             ) : (
               <Link to={"/category/" + category + "/" + item.id}>
-                <div className="min-h-[310px]ounded overflow-hidden p-2">
+                <div className="min-h-[310px] rounded overflow-hidden p-2">
                   {item.backdrop_path === null ? (
                     <img
                       className="object-cover cursor-pointer rounded"
