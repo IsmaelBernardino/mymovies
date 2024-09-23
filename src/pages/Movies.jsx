@@ -20,6 +20,16 @@ const Movies = () => {
       .then((response) => {
         setMovies(response.data.results);
         setTotalPages(response.data.total_pages);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("Error en la respuesta:", error.response.data);
+          console.error("Código de estado:", error.response.status);
+        } else if (error.request) {
+          console.error("Error en la solicitud:", error.request);
+        } else {
+          console.error("Error:", error.message);
+        }
       });
     setTimeout(() => {
       setLoading(false);
@@ -34,6 +44,16 @@ const Movies = () => {
       )
       .then((response) => {
         setMovies([...movies, ...response.data.results]);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("Error en la respuesta:", error.response.data);
+          console.error("Código de estado:", error.response.status);
+        } else if (error.request) {
+          console.error("Error en la solicitud:", error.request);
+        } else {
+          console.error("Error:", error.message);
+        }
       });
   };
 

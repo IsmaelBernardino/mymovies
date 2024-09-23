@@ -20,6 +20,16 @@ const ActorSlider = ({ type, id }) => {
       )
       .then((res) => {
         setActors(res.data.cast);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("Error en la respuesta:", error.response.data);
+          console.error("Código de estado:", error.response.status);
+        } else if (error.request) {
+          console.error("Error en la solicitud:", error.request);
+        } else {
+          console.error("Error:", error.message);
+        }
       });
   };
   return (

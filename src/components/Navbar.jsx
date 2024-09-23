@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full fixed top-0 flex justify-between items-center pl-8 z-[100] bg-black/50">
+    <div className="w-full fixed top-0 flex justify-between items-center pl-8 z-[100] bg-black">
       <Link to="/" className="flex py-2">
         <h1 className="text-3xl font-bold mr-4 text-yellow-400">My movies</h1>
         <GiPopcorn className="text-red-600" size={35} />

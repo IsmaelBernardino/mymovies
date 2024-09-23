@@ -1,20 +1,29 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import imgCinema from "../asset/cinema.jpg";
 import ActorSlider from "../components/ActorSlider";
 import CategoryDetails from "../components/CategoryDetails";
 import CategoryVideo from "../components/CategoryVideo";
+import axios from "axios";
 
 const CategoryInfo = () => {
   const [movie, setMovie] = useState([]);
   const params = useParams();
 
   const getMovie = async (type, id) => {
-    const api = await fetch(
-      `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_IMDB_API_KEY}&language=en-US`
-    );
-    const data = await api.json();
-    setMovie(data);
+    try {
+      const response = await axios.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_IMDB_API_KEY}&language=en-US`);
+      setMovie(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.error("Error en la respuesta:", error.response.data);
+        console.error("Código de estado:", error.response.status);
+      } else if (error.request) {
+        console.error("Error en la solicitud:", error.request);
+      } else {
+        console.error("Error:", error.message);
+      }
+    }
   };
   
   useEffect(() => {

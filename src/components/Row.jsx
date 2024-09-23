@@ -14,11 +14,22 @@ const Row = ({ title, url, category }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axios.get(url)
+    .then((res) => {
       setMovies(res.data.results);
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.error("Error en la respuesta:", error.response.data);
+        console.error("Código de estado:", error.response.status);
+      } else if (error.request) {
+        console.error("Error en la solicitud:", error.request);
+      } else {
+        console.error("Error:", error.message);
+      }
     });
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, 2000);
   }, [url]);
 
